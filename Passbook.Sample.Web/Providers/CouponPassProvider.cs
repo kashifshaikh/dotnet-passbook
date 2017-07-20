@@ -10,7 +10,7 @@ namespace Passbook.Sample.Web
     {
         public override string PassTypeIdentifier
         {
-            get { return "pass.tomsamcguinness.coupon"; }
+            get { return "pass.com.angus-systems.vs"; }
         }
 
         public override bool IsUpdating()

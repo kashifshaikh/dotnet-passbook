@@ -26,14 +26,18 @@ namespace Passbook.Sample.Web.Controllers
 
         public ActionResult Coupon()
         {
-            return View();
+            //return View();
 
             PassGenerator generator = new PassGenerator();
 
             CouponPassGeneratorRequest request = new CouponPassGeneratorRequest();
             request.PassTypeIdentifier = "pass.com.angus-systems.vs";
-            request.CertThumbprint = ConfigurationManager.AppSettings["PassBookCertificateThumbprint"];
-            request.CertLocation = System.Security.Cryptography.X509Certificates.StoreLocation.LocalMachine;
+			//request.CertThumbprint = ConfigurationManager.AppSettings["PassBookCertificateThumbprint"];
+			request.Certificate = System.IO.File.ReadAllBytes(ConfigurationManager.AppSettings["PassbookCertificate"]);
+			request.CertificatePassword = ConfigurationManager.AppSettings["PassbookCertificatePassword"];
+			request.AppleWWDRCACertificate = System.IO.File.ReadAllBytes(ConfigurationManager.AppSettings["AppleCACertificate"]);
+			//request.CertLocation = System.Security.Cryptography.X509Certificates.StoreLocation.CurrentUser;
+			
             request.SerialNumber = "121211";
             request.Description = "My first pass";
             request.OrganizationName = "Tomas McGuinness";
