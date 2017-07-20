@@ -31,13 +31,13 @@ namespace Passbook.Sample.Web.Controllers
             PassGenerator generator = new PassGenerator();
 
             CouponPassGeneratorRequest request = new CouponPassGeneratorRequest();
-            request.PassTypeIdentifier = "pass.passverse.com.public";
+            request.PassTypeIdentifier = "pass.com.angus-systems.vs";
             request.CertThumbprint = ConfigurationManager.AppSettings["PassBookCertificateThumbprint"];
             request.CertLocation = System.Security.Cryptography.X509Certificates.StoreLocation.LocalMachine;
             request.SerialNumber = "121211";
             request.Description = "My first pass";
             request.OrganizationName = "Tomas McGuinness";
-            request.TeamIdentifier = "R5QS56362W";
+            request.TeamIdentifier = "NT385FNA76";
             request.LogoText = "My Pass";
             request.BackgroundColor = "rgb(0,0,0)";
             request.ForegroundColor = "rgb(255,255,255)";
@@ -48,7 +48,7 @@ namespace Passbook.Sample.Web.Controllers
             request.Images.Add(PassbookImage.Icon, System.IO.File.ReadAllBytes(Server.MapPath("~/Icons/icon.png")));
             request.Images.Add(PassbookImage.IconRetina, System.IO.File.ReadAllBytes(Server.MapPath("~/Icons/icon@2x.png")));
 
-            request.AddBarCode("01927847623423234234", BarcodeType.PKBarcodeFormatPDF417, "UTF-8", "01927847623423234234");
+            request.AddBarcode(BarcodeType.PKBarcodeFormatPDF417, "01927847623423234234", "UTF-8", "01927847623423234234");
 
             byte[] generatedPass = generator.Generate(request);
 
